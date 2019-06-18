@@ -2,9 +2,28 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Laravel</title>
+<title>商品一覧画面</title>
 </head>
 <body>
-<p>変数は{{$var}}です</p>
+<table border="1">
+<tr>
+<th>商品名</th>
+<th>価格</th>
+<th>在庫</th>
+</tr>
+@foreach ($items as $item)
+	<tr align="center">
+	<td>{{ $item->name }}</td>
+	<td>{{ $item->price }}</td>
+	<td>
+	@if ($item->stock_quantity === 0)
+		在庫無し
+	@else
+		在庫あり
+	@endif
+	</td>
+	</tr>
+@endforeach
+</table>
 </body>
 </html>
