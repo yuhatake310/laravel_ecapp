@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'ItemController@index');
+Route::get('/item/detail/{item_id}', 'ItemController@detail')->name('item.detail');
 
 Auth::routes();
 

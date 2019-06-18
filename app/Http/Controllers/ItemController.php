@@ -9,4 +9,9 @@ class ItemController extends Controller {
 		$items = \DB::table('items')->get();
 		return view('item.index', compact('items'));
 	}
+
+	public function detail($item_id) {
+		$item = \DB::table('items')->find($item_id);
+		return view('item.detail', compact('item'));
+	}
 }
