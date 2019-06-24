@@ -133,7 +133,11 @@ return [
 		'email' => 'メールアドレス',
     	'password' => 'パスワード',
     	'password_confirmation' => 'パスワード（確認）',
-    	'name' => 'ユーザー名'
+		'name' => 'ユーザー名',
+		'item_name' => '商品名',
+		'description' => '商品説明',
+		'price' => '価格',
+		'stock_quantity' => '在庫数',
 	],
 
 ];
