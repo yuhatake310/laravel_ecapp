@@ -8,7 +8,7 @@
 				<div class="panel-heading">商品詳細</div>
 
 				<div class="panel-body">
-					<p>商品名：{{ $item->name }}</p>
+					<p>商品名：{{ $item->item_name }}</p>
 					<p>説明：{{ $item->description }}</p>
 					<p>価格：{{ $item->price }}</p>
 					<p>在庫：
