@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth:user'], function() {
 });
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('/', function () { return redirect('/admin/home'); });
+    Route::get('/', function () { return redirect('/admin/item'); });
     Route::get('login', 'Admin\LoginController@showLoginForm')->name('admin.login');
     Route::post('login', 'Admin\LoginController@login');
 });
