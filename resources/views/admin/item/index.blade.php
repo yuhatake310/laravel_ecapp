@@ -16,7 +16,7 @@
 						</tr>
 						@foreach ($items as $item)
 							<tr>
-								<td><a href="{{ route('admin.item.detail', ['item_id' => $item->id]) }}">{{ $item->name }}</a></td>
+								<td><a href="{{ route('admin.item.detail', ['item_id' => $item->id]) }}">{{ $item->item_name }}</a></td>
 								<td>{{ $item->price }}</td>
 								<td>
 								@if ($item->stock_quantity === 0)
