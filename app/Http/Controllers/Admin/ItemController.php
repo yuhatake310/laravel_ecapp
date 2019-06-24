@@ -20,4 +20,8 @@ class ItemController extends Controller {
 		$item = Item::find($item_id);
 		return view('admin.item.detail', compact('item'));
 	}
+
+	public function showAddForm() {
+		return view('admin.item.add');
+	}
 }
