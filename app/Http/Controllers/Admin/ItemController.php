@@ -24,4 +24,18 @@ class ItemController extends Controller {
 	public function showAddForm() {
 		return view('admin.item.add');
 	}
+
+	public function add(Request $request) {
+		$request->validate([
+			'item_name' => 'required|unique:items|max:255',
+			'description' => 'required|max:255',
+			'price' => 'required|integer',
+			'stock_quantity' => 'required|integer',
+		]);
+
+		$item = new Item;
+		$item->fill($request->all())->save();
+
+		return redirect()->route('admin.item.index');
+	}
 }
