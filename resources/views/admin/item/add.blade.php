@@ -8,10 +8,19 @@
 				<div class="panel-heading">商品追加</div>
 
 				<div class="panel-body">
-				{{ Form::open() }}
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+				{{ Form::open(['action' => 'Admin\ItemController@add']) }}
 					<div class="form-group">
 						{{ Form::label('title', '商品名') }}
-						{{ Form::text('name', null, ['class' => 'form-control']) }}
+						{{ Form::text('item_name', null, ['class' => 'form-control']) }}
 					</div>
 					<div class="form-group">
 						{{ Form::label('title', '商品説明') }}
