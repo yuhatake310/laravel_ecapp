@@ -18,6 +18,7 @@
 						在庫あり
 					@endif
 					</p>
+					<a href="{{ route('admin.item.edit') }}?id={{ $item->id }}">商品編集</a>
 				</div>
 			</div>
 		</div>
