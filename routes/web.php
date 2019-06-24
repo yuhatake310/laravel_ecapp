@@ -34,5 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
 	Route::get('item', 'Admin\ItemController@index')->name('admin.item.index');
 	Route::get('item/add', 'Admin\ItemController@showAddForm')->name('admin.item.add');
 	Route::post('item/add', 'Admin\ItemController@add');
+	Route::get('item/edit', 'Admin\ItemController@showEditForm')->name('admin.item.edit');
+	Route::post('item/edit', 'Admin\ItemController@edit');
 	Route::get('item/detail/{item_id}', 'Admin\ItemController@detail')->name('admin.item.detail');
 });
