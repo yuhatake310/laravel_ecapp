@@ -38,4 +38,22 @@ class ItemController extends Controller {
 
 		return redirect()->route('admin.item.index');
 	}
+
+	public function showEditForm(Request $request) {
+		$item = Item::find($request->id);
+		return view('admin.item.edit', compact('item'));
+	}
+
+	public function edit(Request $request) {
+		$request->validate([
+			'item_name' => 'required|max:255',
+			'description' => 'required|max:255',
+			'stock_quantity' => 'required|integer',
+		]);
+
+		$item = Item::find($request->id);
+		$item->fill($request->all())->save();
+
+		return redirect()->route('admin.item.index');
+	}
 }
