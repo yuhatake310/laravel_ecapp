@@ -52,7 +52,12 @@ class ItemController extends Controller {
 		]);
 
 		$item = Item::find($request->id);
-		$item->fill($request->all())->save();
+		$edit_data = [
+			'item_name' => $request->item_name,
+			'description' => $request->description,
+			'stock_quantity' => $request->stock_quantity,
+		];
+		$item->fill($edit_data)->save();
 
 		return redirect()->route('admin.item.index');
 	}
