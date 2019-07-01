@@ -30,4 +30,9 @@ class User extends Authenticatable {
 	public function sendPasswordResetNotification($token) {
 		$this->notify(new ResetPasswordNotification($token));
 	}
+
+	public function cart() {
+		return $this->hasOne('App\Cart');
+	}
+
 }
