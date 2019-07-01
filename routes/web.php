@@ -14,11 +14,13 @@
 Auth::routes();
 
 Route::get('/', function () { return redirect('/item'); });
-Route::get('/item', 'ItemController@index');
+Route::get('/item', 'ItemController@index')->name('item.index');
 Route::get('/item/detail/{item_id}', 'ItemController@detail')->name('item.detail');
 
 Route::group(['middleware' => 'auth:user'], function() {
 	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/cart/{user_id}', 'CartController@index')->name('cart');
+	Route::get('/cart/delete/{cart_id}', 'CartController@delete')->name('cart.delete');
 });
 
 Route::group(['prefix' => 'admin'], function() {
