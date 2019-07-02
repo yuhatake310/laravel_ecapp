@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth:user'], function() {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/cart/{user_id}', 'CartController@index')->name('cart');
 	Route::get('/cart/delete/{cart_id}', 'CartController@delete')->name('cart.delete');
+	Route::get('/cart/add/{item_id}', 'CartController@add')->name('cart.add');
 });
 
 Route::group(['prefix' => 'admin'], function() {

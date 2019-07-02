@@ -18,6 +18,17 @@
 						在庫あり
 					@endif
 					</p>
+					<p>カート追加：
+					@guest
+						ログインしてください
+					@else
+						@if ($item->stock_quantity === 0)
+							在庫無し
+						@else
+							<a href="{{ route('cart.add', ['item_id' => $item->id]) }}" class="btn btn-primary float-right">カート追加</a>
+						@endif
+					@endguest
+					</p>
 				</div>
 			</div>
 		</div>
