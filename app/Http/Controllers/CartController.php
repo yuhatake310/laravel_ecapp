@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart;
+use App\Item;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller {
@@ -22,17 +23,17 @@ class CartController extends Controller {
 	}
 
 	public function add($item_id) {
-		$cart = Cart::where('user_id', Auth::id())->where('item_id', $item_id)->first();
-		if (empty($cart)) {
-			$cart = new Cart;
-			$add_data = [
+		$item = Item::find($item_id);
+		if ($item->stock_quantity !== 0) {
+			$cart = Cart::firstOrCreate([
 				'user_id' => Auth::id(),
-				'item_id' => $item_id,
-				'item_quantity' => 1,
-			];
-			$cart->fill($add_data)->save();
-		} else {
-			$cart->increment('item_quantity');
+				'item_id' => $item_id
+			], [
+				'item_quantity' => 1
+			]);
+			if (!$cart->wasRecentlyCreated) {
+				$cart->increment('item_quantity');
+			}
 		}
 		return redirect()->route('cart', ['user_id' => Auth::id()]);
 	}
