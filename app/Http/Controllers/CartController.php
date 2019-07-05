@@ -24,17 +24,23 @@ class CartController extends Controller {
 
 	public function add($item_id) {
 		$item = Item::find($item_id);
-		if ($item->stock_quantity !== 0) {
+		if ($item->stock_quantity === 0) {
+			return redirect()->route('item.detail', ['item_id' => $item->id])->with('error_message', '在庫がありません');
+		} else {
 			$cart = Cart::firstOrCreate([
 				'user_id' => Auth::id(),
 				'item_id' => $item_id
 			], [
 				'item_quantity' => 1
 			]);
-			if (!$cart->wasRecentlyCreated) {
+			if ($cart->item_quantity === $item->stock_quantity) {
+				return redirect()
+					->route('item.detail', ['item_id' => $item->id])
+					->with('error_message', '在庫がないため、これ以上カートに追加することはできません');
+			} elseif (!$cart->wasRecentlyCreated) {
 				$cart->increment('item_quantity');
 			}
+			return redirect()->route('cart', ['user_id' => Auth::id()]);
 		}
-		return redirect()->route('cart', ['user_id' => Auth::id()]);
 	}
 }

@@ -8,6 +8,11 @@
 				<div class="panel-heading">商品詳細</div>
 
 				<div class="panel-body">
+					@if (!empty(session('error_message')))
+						<div class="alert alert-danger">
+							{{ session('error_message') }}
+						</div>
+					@endif
 					<p>商品名：{{ $item->item_name }}</p>
 					<p>説明：{{ $item->description }}</p>
 					<p>価格：{{ $item->price }}</p>
